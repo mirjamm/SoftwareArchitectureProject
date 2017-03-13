@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">t131566</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://dev.vk.edu.ee:5432/GroupWork</property>
+        <property name="hibernate.connection.username">t131566</property>
+        <property name="hibernate.default_schema">project</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <mapping class="hibernatePackage.Course" />
+        <mapping class="hibernatePackage.Coursedata" />
+        <mapping class="hibernatePackage.Attendance" />
+        <mapping class="hibernatePackage.Group" />
+        <mapping class="hibernatePackage.Type" />
+        <mapping class="hibernatePackage.Groupcoursedata" />
+        <mapping class="hibernatePackage.Person" />
+        <mapping class="hibernatePackage.Role" />
+        <mapping class="hibernatePackage.Language" />
+        <mapping class="hibernatePackage.Student" />
+    </session-factory>
+</hibernate-configuration>
