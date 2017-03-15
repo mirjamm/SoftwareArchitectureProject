@@ -19,5 +19,15 @@
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/hibernate-release-5.2.5.Final/hibernate-release-5.2.5.Final/lib/required/jboss-logging-3.3.0.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/hibernate-release-5.2.5.Final/hibernate-release-5.2.5.Final/lib/required/jsr250-api-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/postgresql-42.0.0.jre6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-ooxml-schemas-3.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-ooxml-3.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-3.9.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_101">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
