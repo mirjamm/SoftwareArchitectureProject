@@ -1,6 +1,6 @@
 package hibernatePackage;
 
-// Generated Mar 13, 2017 10:52:21 AM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 16, 2017 2:42:55 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,8 +22,13 @@ public class Coursedata implements java.io.Serializable {
 
 	private int id;
 	private Course course;
-	private String lecture;
-	private String name;
+	private Language language;
+	private Person person;
+	private Integer practice;
+	private Integer lecture;
+	private Integer excercise;
+	private Double lecturesperweek;
+	private String semester;
 	private Set<Groupcoursedata> groupcoursedatas = new HashSet<Groupcoursedata>(0);
 
 	public Coursedata() {
@@ -33,11 +38,17 @@ public class Coursedata implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Coursedata(int id, Course course, String lecture, String name, Set<Groupcoursedata> groupcoursedatas) {
+	public Coursedata(int id, Course course, Language language, Person person, Integer practice, Integer lecture, Integer excercise, Double lecturesperweek, String semester,
+			Set<Groupcoursedata> groupcoursedatas) {
 		this.id = id;
 		this.course = course;
+		this.language = language;
+		this.person = person;
+		this.practice = practice;
 		this.lecture = lecture;
-		this.name = name;
+		this.excercise = excercise;
+		this.lecturesperweek = lecturesperweek;
+		this.semester = semester;
 		this.groupcoursedatas = groupcoursedatas;
 	}
 
@@ -61,22 +72,69 @@ public class Coursedata implements java.io.Serializable {
 		this.course = course;
 	}
 
-	@Column(name = "lecture", length = 100)
-	public String getLecture() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "languageid")
+	public Language getLanguage() {
+		return this.language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "teacherid")
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	@Column(name = "practice")
+	public Integer getPractice() {
+		return this.practice;
+	}
+
+	public void setPractice(Integer practice) {
+		this.practice = practice;
+	}
+
+	@Column(name = "lecture")
+	public Integer getLecture() {
 		return this.lecture;
 	}
 
-	public void setLecture(String lecture) {
+	public void setLecture(Integer lecture) {
 		this.lecture = lecture;
 	}
 
-	@Column(name = "name", length = 100)
-	public String getName() {
-		return this.name;
+	@Column(name = "excercise")
+	public Integer getExcercise() {
+		return this.excercise;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setExcercise(Integer excercise) {
+		this.excercise = excercise;
+	}
+
+	@Column(name = "lecturesperweek", precision = 17, scale = 17)
+	public Double getLecturesperweek() {
+		return this.lecturesperweek;
+	}
+
+	public void setLecturesperweek(Double lecturesperweek) {
+		this.lecturesperweek = lecturesperweek;
+	}
+
+	@Column(name = "semester", length = 5)
+	public String getSemester() {
+		return this.semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "coursedata")

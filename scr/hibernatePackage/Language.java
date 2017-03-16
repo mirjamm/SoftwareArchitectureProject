@@ -1,10 +1,14 @@
 package hibernatePackage;
 
-// Generated Mar 13, 2017 10:52:21 AM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 16, 2017 2:42:55 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,6 +20,7 @@ public class Language implements java.io.Serializable {
 
 	private int id;
 	private String name;
+	private Set<Coursedata> coursedatas = new HashSet<Coursedata>(0);
 
 	public Language() {
 	}
@@ -24,9 +29,10 @@ public class Language implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Language(int id, String name) {
+	public Language(int id, String name, Set<Coursedata> coursedatas) {
 		this.id = id;
 		this.name = name;
+		this.coursedatas = coursedatas;
 	}
 
 	@Id
@@ -46,6 +52,15 @@ public class Language implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "language")
+	public Set<Coursedata> getCoursedatas() {
+		return this.coursedatas;
+	}
+
+	public void setCoursedatas(Set<Coursedata> coursedatas) {
+		this.coursedatas = coursedatas;
 	}
 
 }

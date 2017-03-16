@@ -1,6 +1,6 @@
 package hibernatePackage;
 
-// Generated Mar 13, 2017 10:52:21 AM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 16, 2017 2:42:55 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +26,7 @@ public class Person implements java.io.Serializable {
 	private String lastname;
 	private String username;
 	private String password;
+	private Set<Coursedata> coursedatas = new HashSet<Coursedata>(0);
 	private Set<Student> students = new HashSet<Student>(0);
 
 	public Person() {
@@ -35,13 +36,14 @@ public class Person implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Person(int id, Role role, String firstname, String lastname, String username, String password, Set<Student> students) {
+	public Person(int id, Role role, String firstname, String lastname, String username, String password, Set<Coursedata> coursedatas, Set<Student> students) {
 		this.id = id;
 		this.role = role;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
+		this.coursedatas = coursedatas;
 		this.students = students;
 	}
 
@@ -99,6 +101,15 @@ public class Person implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+	public Set<Coursedata> getCoursedatas() {
+		return this.coursedatas;
+	}
+
+	public void setCoursedatas(Set<Coursedata> coursedatas) {
+		this.coursedatas = coursedatas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")

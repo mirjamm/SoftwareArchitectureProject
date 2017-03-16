@@ -21,7 +21,7 @@
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/postgresql-42.0.0.jre6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-ooxml-schemas-3.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-ooxml-3.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-ooxml-3.9.jar" sourcepath="C:/Users/Lenovo/Downloads/poi-ooxml-3.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-3.9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_101">
@@ -29,5 +29,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lenovo/Downloads/poi-scratchpad-3.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
