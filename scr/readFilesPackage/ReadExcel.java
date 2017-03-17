@@ -42,8 +42,8 @@ public class ReadExcel {
 			for (int r = 11; r < rows + 11; r++) {
 				row = sheet.getRow(r);
 				if (row != null) {
-					System.out.println(row.getCell(1).getStringCellValue() + " " + row.getCell(2).getStringCellValue() + " " + row.getCell(3).getStringCellValue());
-
+/*					System.out.println(row.getCell(1).getStringCellValue() + " " + row.getCell(2).getStringCellValue() + " " + row.getCell(3).getStringCellValue());
+*/
 					PreparedStatement preparedStatementRoles = conn.prepareStatement("SELECT * FROM role");
 					ResultSet resultRoles = preparedStatementRoles.executeQuery();
 
