@@ -1,5 +1,7 @@
 package readFilesPackage;
 
+import hibernatePackage.Course;
+
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +13,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
+import daoPackage.CourseDAO;
 
 public class ReadExcel {
 
@@ -42,8 +46,6 @@ public class ReadExcel {
 			for (int r = 11; r < rows + 11; r++) {
 				row = sheet.getRow(r);
 				if (row != null) {
-/*					System.out.println(row.getCell(1).getStringCellValue() + " " + row.getCell(2).getStringCellValue() + " " + row.getCell(3).getStringCellValue());
-*/
 					PreparedStatement preparedStatementRoles = conn.prepareStatement("SELECT * FROM role");
 					ResultSet resultRoles = preparedStatementRoles.executeQuery();
 
@@ -92,27 +94,19 @@ public class ReadExcel {
 						preparedStatementNewTeacher.setInt(3, roleId);
 						preparedStatementNewTeacher.executeUpdate();
 					}
-
-					PreparedStatement preparedStatementCourseCode = conn.prepareStatement("SELECT * FROM course where code=?");
-					preparedStatementCourseCode.setString(1, row.getCell(2).getStringCellValue());
-					ResultSet resultCourse = preparedStatementCourseCode.executeQuery();
-
-					if (!resultCourse.next()) {
+					CourseDAO dao = new CourseDAO();
+					Course course=dao.FindCourseByCode(row.getCell(2).getStringCellValue());
+					int courseId = 0;
+					if (course!=null) {
 						PreparedStatement preparedStatementCourse = conn.prepareStatement("INSERT INTO course (code,name,lectureship) VALUES (?,?,?)");
 
 						preparedStatementCourse.setString(1, row.getCell(2).getStringCellValue());
 						preparedStatementCourse.setString(2, row.getCell(3).getStringCellValue());
 						preparedStatementCourse.setString(3, row.getCell(1).getStringCellValue());
 						preparedStatementCourse.executeUpdate();
+						courseId=course.getId();
 					}
-
-					PreparedStatement preparedStatementId = conn.prepareStatement("SELECT id FROM course where code=?");
-					preparedStatementId.setString(1, row.getCell(2).getStringCellValue());
-					ResultSet resultCourseId = preparedStatementId.executeQuery();
-					int courseId = 0;
-					if (resultCourseId.next()) {
-						courseId = resultCourseId.getInt(1);
-
+					if (courseId!=0) {
 						PreparedStatement preparedStatementLanguageId = conn.prepareStatement("SELECT * FROM language where name=?");
 						preparedStatementLanguageId.setString(1, row.getCell(13).getStringCellValue());
 						int languageId = 0;
@@ -128,8 +122,8 @@ public class ReadExcel {
 							if (resultTeacherId.next()) {
 								teacherId = resultTeacherId.getInt(1);
 
-								PreparedStatement preparedStatementExistingCourseData = conn
-										.prepareStatement("SELECT * FROM coursedata where courseid=? and practice=? and excercise=? and lecture=? and languageid=? and teacherid=?");
+								PreparedStatement preparedStatementExistingCourseData = conn.prepareStatement("SELECT * FROM coursedata where courseid=? " +
+										"and practice=? and excercise=? and lecture=? and languageid=? and teacherid=?");
 								preparedStatementExistingCourseData.setInt(1, courseId);
 								int practice = (int) (row.getCell(6) != null ? row.getCell(6).getNumericCellValue() : 0);
 								int lecture = (int) (row.getCell(5) != null ? row.getCell(5).getNumericCellValue() : 0);
